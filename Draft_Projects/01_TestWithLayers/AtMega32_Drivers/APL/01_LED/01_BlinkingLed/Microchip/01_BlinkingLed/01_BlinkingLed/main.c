@@ -1,7 +1,6 @@
 /*
  * 01_BlinkingLed.c
  *
- * Created: 5/11/2024 3:23:50 AM
  * Author : Ahmed Fekry
  */ 
 
