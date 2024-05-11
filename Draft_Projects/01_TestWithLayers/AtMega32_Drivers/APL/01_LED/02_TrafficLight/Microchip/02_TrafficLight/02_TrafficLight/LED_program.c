@@ -1,4 +1,4 @@
-#include "../../MCAL/01_DIO/DIO_interface.h"
+#include "DIO_interface.h"
 
 void LED_Init(unsigned char port, unsigned char pin)
 {
