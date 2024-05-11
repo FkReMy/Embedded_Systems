@@ -429,15 +429,15 @@ END GROUP
  .debug_frame   0x000000a4       0x64 LED_program.o
  .debug_frame   0x00000108       0x24 main.o
 
-.debug_str      0x00000000      0x46d
+.debug_str      0x00000000      0x51a
  *(.debug_str)
  .debug_str     0x00000000      0x196 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_str     0x00000196      0x206 DIO_program.o
                                 0x22d (size before relaxing)
  .debug_str     0x0000039c       0x50 LED_program.o
                                 0x1c4 (size before relaxing)
- .debug_str     0x000003ec       0x81 main.o
-                                0x207 (size before relaxing)
+ .debug_str     0x000003ec      0x12e main.o
+                                0x233 (size before relaxing)
 
 .debug_loc      0x00000000      0x64a
  *(.debug_loc)

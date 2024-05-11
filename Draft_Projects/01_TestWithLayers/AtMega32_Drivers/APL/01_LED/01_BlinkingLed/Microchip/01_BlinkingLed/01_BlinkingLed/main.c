@@ -1,5 +1,5 @@
 /*
- * 01_BlinkingLed.c
+ * 01_BlinkingLED.c
  *
  * Author : Ahmed Fekry
  */ 
