@@ -27,18 +27,20 @@ int main(void)
     while (1) 
     {
 
-		unsigned char red = 9;
-		unsigned char yellow = 5;
-		unsigned char green = 8;
+		unsigned char red = 30;
+		unsigned char yellow = 15;
+		unsigned char green = 35;
 		
 		//red
 		for(int i = red; i >= 0; i--)
 		{	
+			
 			LED_Off(porta,pin2);
 			LED_On(porta,pin0);
-				
-			SEVEN_SEG_Write(portc,i);
-			SEVEN_SEG_Write(portd,i);
+			
+			SEVEN_SEG_Write(portc,i % 10);
+			SEVEN_SEG_Write(portd,i / 10);
+			
 			_delay_ms(1000);
 				
 			//yellow
@@ -50,11 +52,13 @@ int main(void)
 					
 				for (int j = yellow; j>=0; j--)
 				{
+
 					LED_Off(porta,pin0);
 					LED_On(porta,pin1);
 						
-					SEVEN_SEG_Write(portc,j);
-					SEVEN_SEG_Write(portd,j);
+					SEVEN_SEG_Write(portc,j % 10);
+					SEVEN_SEG_Write(portd,j / 10);
+					
 					_delay_ms(1000);
 						
 					//green
@@ -66,11 +70,13 @@ int main(void)
 							
 						for (int k = green; k >=0; k--)
 						{
+							
 							LED_Off(porta,pin1);
 							LED_On(porta,pin2);
 								
-							SEVEN_SEG_Write(portd,k);
-							SEVEN_SEG_Write(portc,k);
+							SEVEN_SEG_Write(portc,k % 10);	
+							SEVEN_SEG_Write(portd,k / 10);
+							
 							_delay_ms(1000);
 								
 						}

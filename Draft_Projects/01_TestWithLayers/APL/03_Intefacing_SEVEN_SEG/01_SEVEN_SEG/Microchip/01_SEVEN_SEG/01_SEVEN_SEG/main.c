@@ -11,13 +11,13 @@
 
 int main(void)
 {
-    SEVEN_SEG_Init(portc);
+    SEVEN_SEG_Init(portb);
     while (1) 
     {
 		unsigned char i;
 		for (i=0; i<=9;i++)
 		{
-			SEVEN_SEG_Write( portc, i);
+			SEVEN_SEG_Write( portb, i);
 			_delay_ms(1000);
 		}
     }

@@ -168,7 +168,7 @@ void DIO_WritePort(unsigned char port, unsigned char val)
 		//Port D
 		case 'D' :
 			PORTD = val;
-  ca:	60 bb       	out	0x10, r22	; 16
+  ca:	62 bb       	out	0x12, r22	; 18
   cc:	08 95       	ret
 
 000000ce <main>:
@@ -177,8 +177,8 @@ void DIO_WritePort(unsigned char port, unsigned char val)
 
 int main(void)
 {
-    SEVEN_SEG_Init(portc);
-  ce:	83 e4       	ldi	r24, 0x43	; 67
+    SEVEN_SEG_Init(portb);
+  ce:	82 e4       	ldi	r24, 0x42	; 66
   d0:	0e 94 7d 00 	call	0xfa	; 0xfa <SEVEN_SEG_Init>
     while (1) 
     {
@@ -187,9 +187,9 @@ int main(void)
   d4:	c0 e0       	ldi	r28, 0x00	; 0
   d6:	0e c0       	rjmp	.+28     	; 0xf4 <main+0x26>
 		{
-			SEVEN_SEG_Write( portc, i);
+			SEVEN_SEG_Write( portb, i);
   d8:	6c 2f       	mov	r22, r28
-  da:	83 e4       	ldi	r24, 0x43	; 67
+  da:	82 e4       	ldi	r24, 0x42	; 66
   dc:	0e 94 81 00 	call	0x102	; 0x102 <SEVEN_SEG_Write>
 	#else
 		//round up by default
@@ -207,7 +207,7 @@ int main(void)
   ee:	00 c0       	rjmp	.+0      	; 0xf0 <main+0x22>
   f0:	00 00       	nop
 {
-    SEVEN_SEG_Init(portc);
+    SEVEN_SEG_Init(portb);
     while (1) 
     {
 		unsigned char i;

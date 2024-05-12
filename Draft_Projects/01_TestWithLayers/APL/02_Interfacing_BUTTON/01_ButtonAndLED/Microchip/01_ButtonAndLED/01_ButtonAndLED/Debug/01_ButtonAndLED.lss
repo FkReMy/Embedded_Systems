@@ -285,7 +285,7 @@ Disassembly of section .text:
  206:	08 95       	ret
  208:	41 30       	cpi	r20, 0x01	; 1
  20a:	59 f4       	brne	.+22     	; 0x222 <DIO_WritePin+0xc8>
- 20c:	20 b3       	in	r18, 0x10	; 16
+ 20c:	22 b3       	in	r18, 0x12	; 18
  20e:	81 e0       	ldi	r24, 0x01	; 1
  210:	90 e0       	ldi	r25, 0x00	; 0
  212:	02 c0       	rjmp	.+4      	; 0x218 <DIO_WritePin+0xbe>
@@ -294,9 +294,9 @@ Disassembly of section .text:
  218:	6a 95       	dec	r22
  21a:	e2 f7       	brpl	.-8      	; 0x214 <DIO_WritePin+0xba>
  21c:	82 2b       	or	r24, r18
- 21e:	80 bb       	out	0x10, r24	; 16
+ 21e:	82 bb       	out	0x12, r24	; 18
  220:	08 95       	ret
- 222:	20 b3       	in	r18, 0x10	; 16
+ 222:	22 b3       	in	r18, 0x12	; 18
  224:	81 e0       	ldi	r24, 0x01	; 1
  226:	90 e0       	ldi	r25, 0x00	; 0
  228:	02 c0       	rjmp	.+4      	; 0x22e <DIO_WritePin+0xd4>
@@ -306,7 +306,7 @@ Disassembly of section .text:
  230:	e2 f7       	brpl	.-8      	; 0x22a <DIO_WritePin+0xd0>
  232:	80 95       	com	r24
  234:	82 23       	and	r24, r18
- 236:	80 bb       	out	0x10, r24	; 16
+ 236:	82 bb       	out	0x12, r24	; 18
  238:	08 95       	ret
 
 0000023a <DIO_ReadPin>:
@@ -406,7 +406,7 @@ unsigned char DIO_ReadPin(unsigned char port, unsigned char pin)
 			//Port D
 			case 'D' :
 				value = ((PIND&(1<<pin))>>pin);
- 2c8:	42 b3       	in	r20, 0x12	; 18
+ 2c8:	40 b3       	in	r20, 0x10	; 16
  2ca:	81 e0       	ldi	r24, 0x01	; 1
  2cc:	90 e0       	ldi	r25, 0x00	; 0
  2ce:	9c 01       	movw	r18, r24

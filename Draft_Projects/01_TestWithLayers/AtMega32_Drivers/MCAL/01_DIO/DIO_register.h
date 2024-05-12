@@ -22,8 +22,8 @@
 #define PORTC	Register_At_Address(0x35) //Port C Data Register //35
 
 //GPIO Port D
-#define PIND	Register_At_Address(0x32) //Port D Input Pins Register //32
+#define PIND	Register_At_Address(0x30) //Port D Input Pins Register //30
 #define DDRD	Register_At_Address(0x31) //Port D Data Direction Register //31
-#define PORTD	Register_At_Address(0x30) //Port D Data Register //30
+#define PORTD	Register_At_Address(0x32) //Port D Data Register //32
 
 #endif

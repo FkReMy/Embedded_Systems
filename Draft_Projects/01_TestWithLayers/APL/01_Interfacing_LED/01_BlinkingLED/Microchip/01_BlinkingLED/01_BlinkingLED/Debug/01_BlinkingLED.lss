@@ -370,7 +370,7 @@ void DIO_WritePin(unsigned char port, unsigned char pin, unsigned char val)
  1fc:	59 f4       	brne	.+22     	; 0x214 <DIO_WritePin+0xc8>
 		{
 			Bit_Set(PORTD, pin);
- 1fe:	20 b3       	in	r18, 0x10	; 16
+ 1fe:	22 b3       	in	r18, 0x12	; 18
  200:	81 e0       	ldi	r24, 0x01	; 1
  202:	90 e0       	ldi	r25, 0x00	; 0
  204:	02 c0       	rjmp	.+4      	; 0x20a <DIO_WritePin+0xbe>
@@ -379,13 +379,13 @@ void DIO_WritePin(unsigned char port, unsigned char pin, unsigned char val)
  20a:	6a 95       	dec	r22
  20c:	e2 f7       	brpl	.-8      	; 0x206 <DIO_WritePin+0xba>
  20e:	82 2b       	or	r24, r18
- 210:	80 bb       	out	0x10, r24	; 16
+ 210:	82 bb       	out	0x12, r24	; 18
  212:	08 95       	ret
 		}
 		else
 		{
 			Bit_Clear(PORTD,pin);
- 214:	20 b3       	in	r18, 0x10	; 16
+ 214:	22 b3       	in	r18, 0x12	; 18
  216:	81 e0       	ldi	r24, 0x01	; 1
  218:	90 e0       	ldi	r25, 0x00	; 0
  21a:	02 c0       	rjmp	.+4      	; 0x220 <DIO_WritePin+0xd4>
@@ -395,7 +395,7 @@ void DIO_WritePin(unsigned char port, unsigned char pin, unsigned char val)
  222:	e2 f7       	brpl	.-8      	; 0x21c <DIO_WritePin+0xd0>
  224:	80 95       	com	r24
  226:	82 23       	and	r24, r18
- 228:	80 bb       	out	0x10, r24	; 16
+ 228:	82 bb       	out	0x12, r24	; 18
  22a:	08 95       	ret
 
 0000022c <LED_Init>:
