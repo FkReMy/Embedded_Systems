@@ -1,6 +1,7 @@
-#include "../../Service/Definitions.h"
+#include "Definitions.h"
 #include "DIO_register.h"
 #include "DIO_interface.h"
+
 
 void DIO_SetPinDir (unsigned char port, unsigned char pin, unsigned char dir)
 {
