@@ -440,13 +440,13 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xef7
+.debug_info     0x00000000      0xef0
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x4e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_info    0x000004e6      0x26f DIO_program.o
  .debug_info    0x00000755      0x21a LED_program.o
- .debug_info    0x0000096f      0x43c main.o
- .debug_info    0x00000dab      0x14c SEVEN_SEG_program.o
+ .debug_info    0x0000096f      0x435 main.o
+ .debug_info    0x00000da4      0x14c SEVEN_SEG_program.o
 
 .debug_abbrev   0x00000000      0x802
  *(.debug_abbrev)
@@ -471,7 +471,7 @@ END GROUP
  .debug_frame   0x00000108       0x24 main.o
  .debug_frame   0x0000012c       0x54 SEVEN_SEG_program.o
 
-.debug_str      0x00000000      0x5a4
+.debug_str      0x00000000      0x528
  *(.debug_str)
  .debug_str     0x00000000      0x196 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_str     0x00000196      0x259 DIO_program.o
@@ -479,9 +479,9 @@ END GROUP
  .debug_str     0x000003ef       0x50 LED_program.o
                                 0x217 (size before relaxing)
  .debug_str     0x0000043f       0xad main.o
-                                0x28b (size before relaxing)
- .debug_str     0x000004ec       0xb8 SEVEN_SEG_program.o
-                                0x1b8 (size before relaxing)
+                                0x286 (size before relaxing)
+ .debug_str     0x000004ec       0x3c SEVEN_SEG_program.o
+                                0x210 (size before relaxing)
 
 .debug_loc      0x00000000      0x811
  *(.debug_loc)
