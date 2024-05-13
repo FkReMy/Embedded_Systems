@@ -39,6 +39,6 @@ void SEVEN_SEG_Blink(unsigned char port)
 	#endif
 	
 	#if defined CA
-	DIO_WritePort(port, ~0x08);
+		DIO_WritePort(port, ~0x08);
 	#endif
 }
