@@ -13,19 +13,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   4 .debug_aranges 000000f0  00000000  00000000  00000578  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000ede  00000000  00000000  00000668  2**0
+  5 .debug_info   00000ee1  00000000  00000000  00000668  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00000802  00000000  00000000  00001546  2**0
+  6 .debug_abbrev 0000082d  00000000  00000000  00001549  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000788  00000000  00000000  00001d48  2**0
+  7 .debug_line   000007a7  00000000  00000000  00001d76  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000180  00000000  00000000  000024d0  2**2
+  8 .debug_frame  00000180  00000000  00000000  00002520  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    00000528  00000000  00000000  00002650  2**0
+  9 .debug_str    00000531  00000000  00000000  000026a0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    00000812  00000000  00000000  00002b78  2**0
+ 10 .debug_loc    00000812  00000000  00000000  00002bd1  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 000000b0  00000000  00000000  0000338a  2**0
+ 11 .debug_ranges 000000b0  00000000  00000000  000033e3  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -73,7 +73,7 @@ Disassembly of section .text:
   70:	aa 36       	cpi	r26, 0x6A	; 106
   72:	b1 07       	cpc	r27, r17
   74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
-  76:	0e 94 53 01 	call	0x2a6	; 0x2a6 <main>
+  76:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <main>
   7a:	0c 94 44 02 	jmp	0x488	; 0x488 <_exit>
 
 0000007e <__bad_interrupt>:
@@ -404,7 +404,8 @@ void DIO_WritePort(unsigned char port, unsigned char val)
  28c:	08 95       	ret
 
 0000028e <LED_Init>:
-#include "DIO_interface.h"
+#include "01_LED_interface.h"
+#include "03_LED_private.h"
 
 void LED_Init(unsigned char port, unsigned char pin)
 {
@@ -433,293 +434,293 @@ void LED_Off(unsigned char port, unsigned char pin)
  2a0:	0e 94 b1 00 	call	0x162	; 0x162 <DIO_WritePin>
  2a4:	08 95       	ret
 
-000002a6 <main>:
-#include "LED_interface.h"
+000002a6 <SEVEN_SEG_Init>:
 
-int main(void)
-{
-	//Tens
-	SEVEN_SEG_Init(portd);
- 2a6:	84 e4       	ldi	r24, 0x44	; 68
- 2a8:	0e 94 f3 01 	call	0x3e6	; 0x3e6 <SEVEN_SEG_Init>
-	//Units
-	SEVEN_SEG_Init(portc);
- 2ac:	83 e4       	ldi	r24, 0x43	; 67
- 2ae:	0e 94 f3 01 	call	0x3e6	; 0x3e6 <SEVEN_SEG_Init>
-	
-	//Red
-	LED_Init(porta,pin0);
- 2b2:	60 e0       	ldi	r22, 0x00	; 0
- 2b4:	81 e4       	ldi	r24, 0x41	; 65
- 2b6:	0e 94 47 01 	call	0x28e	; 0x28e <LED_Init>
-	//Yellow
-	LED_Init(porta,pin1);
- 2ba:	61 e0       	ldi	r22, 0x01	; 1
- 2bc:	81 e4       	ldi	r24, 0x41	; 65
- 2be:	0e 94 47 01 	call	0x28e	; 0x28e <LED_Init>
-	//Green
-	LED_Init(porta,pin2);
- 2c2:	62 e0       	ldi	r22, 0x02	; 2
- 2c4:	81 e4       	ldi	r24, 0x41	; 65
- 2c6:	0e 94 47 01 	call	0x28e	; 0x28e <LED_Init>
-		unsigned char red = 30;
-		unsigned char yellow = 15;
-		unsigned char green = 35;
-		
-		//red
-		for(int i = red; i >= 0; i--)
- 2ca:	ce e1       	ldi	r28, 0x1E	; 30
- 2cc:	d0 e0       	ldi	r29, 0x00	; 0
- 2ce:	87 c0       	rjmp	.+270    	; 0x3de <main+0x138>
-		{	
-			
-			LED_Off(porta,pin2);
- 2d0:	62 e0       	ldi	r22, 0x02	; 2
- 2d2:	81 e4       	ldi	r24, 0x41	; 65
- 2d4:	0e 94 4f 01 	call	0x29e	; 0x29e <LED_Off>
-			LED_On(porta,pin0);
- 2d8:	60 e0       	ldi	r22, 0x00	; 0
- 2da:	81 e4       	ldi	r24, 0x41	; 65
- 2dc:	0e 94 4b 01 	call	0x296	; 0x296 <LED_On>
-			
-			SEVEN_SEG_Write(portc,i % 10);
- 2e0:	ce 01       	movw	r24, r28
- 2e2:	6a e0       	ldi	r22, 0x0A	; 10
- 2e4:	70 e0       	ldi	r23, 0x00	; 0
- 2e6:	0e 94 1c 02 	call	0x438	; 0x438 <__divmodhi4>
- 2ea:	16 2f       	mov	r17, r22
- 2ec:	68 2f       	mov	r22, r24
- 2ee:	83 e4       	ldi	r24, 0x43	; 67
- 2f0:	0e 94 f7 01 	call	0x3ee	; 0x3ee <SEVEN_SEG_Write>
-			SEVEN_SEG_Write(portd,i / 10);
- 2f4:	61 2f       	mov	r22, r17
- 2f6:	84 e4       	ldi	r24, 0x44	; 68
- 2f8:	0e 94 f7 01 	call	0x3ee	; 0x3ee <SEVEN_SEG_Write>
-	#else
-		//round up by default
-		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
-	#endif
 
-	__builtin_avr_delay_cycles(__ticks_dc);
- 2fc:	2f ef       	ldi	r18, 0xFF	; 255
- 2fe:	89 e6       	ldi	r24, 0x69	; 105
- 300:	98 e1       	ldi	r25, 0x18	; 24
- 302:	21 50       	subi	r18, 0x01	; 1
- 304:	80 40       	sbci	r24, 0x00	; 0
- 306:	90 40       	sbci	r25, 0x00	; 0
- 308:	e1 f7       	brne	.-8      	; 0x302 <main+0x5c>
- 30a:	00 c0       	rjmp	.+0      	; 0x30c <main+0x66>
- 30c:	00 00       	nop
-			
-			_delay_ms(1000);
-				
-			//yellow
-			if (i == 0)
- 30e:	20 97       	sbiw	r28, 0x00	; 0
- 310:	09 f0       	breq	.+2      	; 0x314 <main+0x6e>
- 312:	64 c0       	rjmp	.+200    	; 0x3dc <main+0x136>
-			{
-				//red at 0
-				SEVEN_SEG_Write(portc,i);
- 314:	6c 2f       	mov	r22, r28
- 316:	83 e4       	ldi	r24, 0x43	; 67
- 318:	0e 94 f7 01 	call	0x3ee	; 0x3ee <SEVEN_SEG_Write>
-				SEVEN_SEG_Write(portd,i);
- 31c:	6c 2f       	mov	r22, r28
- 31e:	84 e4       	ldi	r24, 0x44	; 68
- 320:	0e 94 f7 01 	call	0x3ee	; 0x3ee <SEVEN_SEG_Write>
-					
-				for (int j = yellow; j>=0; j--)
- 324:	0f e0       	ldi	r16, 0x0F	; 15
- 326:	10 e0       	ldi	r17, 0x00	; 0
- 328:	56 c0       	rjmp	.+172    	; 0x3d6 <main+0x130>
-				{
-
-					LED_Off(porta,pin0);
- 32a:	60 e0       	ldi	r22, 0x00	; 0
- 32c:	81 e4       	ldi	r24, 0x41	; 65
- 32e:	0e 94 4f 01 	call	0x29e	; 0x29e <LED_Off>
-					LED_On(porta,pin1);
- 332:	61 e0       	ldi	r22, 0x01	; 1
- 334:	81 e4       	ldi	r24, 0x41	; 65
- 336:	0e 94 4b 01 	call	0x296	; 0x296 <LED_On>
-						
-					SEVEN_SEG_Write(portc,j % 10);
- 33a:	c8 01       	movw	r24, r16
- 33c:	6a e0       	ldi	r22, 0x0A	; 10
- 33e:	70 e0       	ldi	r23, 0x00	; 0
- 340:	0e 94 1c 02 	call	0x438	; 0x438 <__divmodhi4>
- 344:	f6 2e       	mov	r15, r22
- 346:	68 2f       	mov	r22, r24
- 348:	83 e4       	ldi	r24, 0x43	; 67
- 34a:	0e 94 f7 01 	call	0x3ee	; 0x3ee <SEVEN_SEG_Write>
-					SEVEN_SEG_Write(portd,j / 10);
- 34e:	6f 2d       	mov	r22, r15
- 350:	84 e4       	ldi	r24, 0x44	; 68
- 352:	0e 94 f7 01 	call	0x3ee	; 0x3ee <SEVEN_SEG_Write>
- 356:	2f ef       	ldi	r18, 0xFF	; 255
- 358:	89 e6       	ldi	r24, 0x69	; 105
- 35a:	98 e1       	ldi	r25, 0x18	; 24
- 35c:	21 50       	subi	r18, 0x01	; 1
- 35e:	80 40       	sbci	r24, 0x00	; 0
- 360:	90 40       	sbci	r25, 0x00	; 0
- 362:	e1 f7       	brne	.-8      	; 0x35c <main+0xb6>
- 364:	00 c0       	rjmp	.+0      	; 0x366 <main+0xc0>
- 366:	00 00       	nop
-					
-					_delay_ms(1000);
-						
-					//green
-					if (j == 0)
- 368:	01 15       	cp	r16, r1
- 36a:	11 05       	cpc	r17, r1
- 36c:	91 f5       	brne	.+100    	; 0x3d2 <main+0x12c>
-					{
-						//yellow at 0
-						SEVEN_SEG_Write(portc,j);
- 36e:	60 2f       	mov	r22, r16
- 370:	83 e4       	ldi	r24, 0x43	; 67
- 372:	0e 94 f7 01 	call	0x3ee	; 0x3ee <SEVEN_SEG_Write>
-						SEVEN_SEG_Write(portd,j);
- 376:	60 2f       	mov	r22, r16
- 378:	84 e4       	ldi	r24, 0x44	; 68
- 37a:	0e 94 f7 01 	call	0x3ee	; 0x3ee <SEVEN_SEG_Write>
-							
-						for (int k = green; k >=0; k--)
- 37e:	0f 2e       	mov	r0, r31
- 380:	f3 e2       	ldi	r31, 0x23	; 35
- 382:	ef 2e       	mov	r14, r31
- 384:	f1 2c       	mov	r15, r1
- 386:	f0 2d       	mov	r31, r0
- 388:	22 c0       	rjmp	.+68     	; 0x3ce <main+0x128>
-						{
-							
-							LED_Off(porta,pin1);
- 38a:	61 e0       	ldi	r22, 0x01	; 1
- 38c:	81 e4       	ldi	r24, 0x41	; 65
- 38e:	0e 94 4f 01 	call	0x29e	; 0x29e <LED_Off>
-							LED_On(porta,pin2);
- 392:	62 e0       	ldi	r22, 0x02	; 2
- 394:	81 e4       	ldi	r24, 0x41	; 65
- 396:	0e 94 4b 01 	call	0x296	; 0x296 <LED_On>
-								
-							SEVEN_SEG_Write(portc,k % 10);	
- 39a:	c7 01       	movw	r24, r14
- 39c:	6a e0       	ldi	r22, 0x0A	; 10
- 39e:	70 e0       	ldi	r23, 0x00	; 0
- 3a0:	0e 94 1c 02 	call	0x438	; 0x438 <__divmodhi4>
- 3a4:	d6 2e       	mov	r13, r22
- 3a6:	68 2f       	mov	r22, r24
- 3a8:	83 e4       	ldi	r24, 0x43	; 67
- 3aa:	0e 94 f7 01 	call	0x3ee	; 0x3ee <SEVEN_SEG_Write>
-							SEVEN_SEG_Write(portd,k / 10);
- 3ae:	6d 2d       	mov	r22, r13
- 3b0:	84 e4       	ldi	r24, 0x44	; 68
- 3b2:	0e 94 f7 01 	call	0x3ee	; 0x3ee <SEVEN_SEG_Write>
- 3b6:	2f ef       	ldi	r18, 0xFF	; 255
- 3b8:	89 e6       	ldi	r24, 0x69	; 105
- 3ba:	98 e1       	ldi	r25, 0x18	; 24
- 3bc:	21 50       	subi	r18, 0x01	; 1
- 3be:	80 40       	sbci	r24, 0x00	; 0
- 3c0:	90 40       	sbci	r25, 0x00	; 0
- 3c2:	e1 f7       	brne	.-8      	; 0x3bc <main+0x116>
- 3c4:	00 c0       	rjmp	.+0      	; 0x3c6 <main+0x120>
- 3c6:	00 00       	nop
-					{
-						//yellow at 0
-						SEVEN_SEG_Write(portc,j);
-						SEVEN_SEG_Write(portd,j);
-							
-						for (int k = green; k >=0; k--)
- 3c8:	21 e0       	ldi	r18, 0x01	; 1
- 3ca:	e2 1a       	sub	r14, r18
- 3cc:	f1 08       	sbc	r15, r1
- 3ce:	ff 20       	and	r15, r15
- 3d0:	e4 f6       	brge	.-72     	; 0x38a <main+0xe4>
-			{
-				//red at 0
-				SEVEN_SEG_Write(portc,i);
-				SEVEN_SEG_Write(portd,i);
-					
-				for (int j = yellow; j>=0; j--)
- 3d2:	01 50       	subi	r16, 0x01	; 1
- 3d4:	11 09       	sbc	r17, r1
- 3d6:	11 23       	and	r17, r17
- 3d8:	0c f0       	brlt	.+2      	; 0x3dc <main+0x136>
- 3da:	a7 cf       	rjmp	.-178    	; 0x32a <main+0x84>
-		unsigned char red = 30;
-		unsigned char yellow = 15;
-		unsigned char green = 35;
-		
-		//red
-		for(int i = red; i >= 0; i--)
- 3dc:	21 97       	sbiw	r28, 0x01	; 1
- 3de:	dd 23       	and	r29, r29
- 3e0:	0c f0       	brlt	.+2      	; 0x3e4 <main+0x13e>
- 3e2:	76 cf       	rjmp	.-276    	; 0x2d0 <main+0x2a>
- 3e4:	72 cf       	rjmp	.-284    	; 0x2ca <main+0x24>
-
-000003e6 <SEVEN_SEG_Init>:
-#include "SEVEN_SEG_interface.h"
-#include "SEVEN_SEG_config.h"
 
 void SEVEN_SEG_Init(unsigned char port)
 {
 	DIO_SetPortDir(port,0xff);
- 3e6:	6f ef       	ldi	r22, 0xFF	; 255
- 3e8:	0e 94 21 01 	call	0x242	; 0x242 <DIO_SetPortDir>
- 3ec:	08 95       	ret
+ 2a6:	6f ef       	ldi	r22, 0xFF	; 255
+ 2a8:	0e 94 21 01 	call	0x242	; 0x242 <DIO_SetPortDir>
+ 2ac:	08 95       	ret
 
-000003ee <SEVEN_SEG_Write>:
+000002ae <SEVEN_SEG_Write>:
 }
 
 void SEVEN_SEG_Write(unsigned char port, unsigned char value)
 {
- 3ee:	cf 93       	push	r28
- 3f0:	df 93       	push	r29
- 3f2:	cd b7       	in	r28, 0x3d	; 61
- 3f4:	de b7       	in	r29, 0x3e	; 62
- 3f6:	2a 97       	sbiw	r28, 0x0a	; 10
- 3f8:	0f b6       	in	r0, 0x3f	; 63
- 3fa:	f8 94       	cli
- 3fc:	de bf       	out	0x3e, r29	; 62
- 3fe:	0f be       	out	0x3f, r0	; 63
- 400:	cd bf       	out	0x3d, r28	; 61
+ 2ae:	cf 93       	push	r28
+ 2b0:	df 93       	push	r29
+ 2b2:	cd b7       	in	r28, 0x3d	; 61
+ 2b4:	de b7       	in	r29, 0x3e	; 62
+ 2b6:	2a 97       	sbiw	r28, 0x0a	; 10
+ 2b8:	0f b6       	in	r0, 0x3f	; 63
+ 2ba:	f8 94       	cli
+ 2bc:	de bf       	out	0x3e, r29	; 62
+ 2be:	0f be       	out	0x3f, r0	; 63
+ 2c0:	cd bf       	out	0x3d, r28	; 61
 	#if defined CC
 	unsigned char seven_seg[]={ 0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x47, 0x7f, 0x6f};
- 402:	9a e0       	ldi	r25, 0x0A	; 10
- 404:	e0 e6       	ldi	r30, 0x60	; 96
- 406:	f0 e0       	ldi	r31, 0x00	; 0
- 408:	de 01       	movw	r26, r28
- 40a:	11 96       	adiw	r26, 0x01	; 1
- 40c:	01 90       	ld	r0, Z+
- 40e:	0d 92       	st	X+, r0
- 410:	9a 95       	dec	r25
- 412:	e1 f7       	brne	.-8      	; 0x40c <__EEPROM_REGION_LENGTH__+0xc>
+ 2c2:	9a e0       	ldi	r25, 0x0A	; 10
+ 2c4:	e0 e6       	ldi	r30, 0x60	; 96
+ 2c6:	f0 e0       	ldi	r31, 0x00	; 0
+ 2c8:	de 01       	movw	r26, r28
+ 2ca:	11 96       	adiw	r26, 0x01	; 1
+ 2cc:	01 90       	ld	r0, Z+
+ 2ce:	0d 92       	st	X+, r0
+ 2d0:	9a 95       	dec	r25
+ 2d2:	e1 f7       	brne	.-8      	; 0x2cc <SEVEN_SEG_Write+0x1e>
 		DIO_WritePort(port,seven_seg[value]);
- 414:	e1 e0       	ldi	r30, 0x01	; 1
- 416:	f0 e0       	ldi	r31, 0x00	; 0
- 418:	ec 0f       	add	r30, r28
- 41a:	fd 1f       	adc	r31, r29
- 41c:	e6 0f       	add	r30, r22
- 41e:	f1 1d       	adc	r31, r1
- 420:	60 81       	ld	r22, Z
- 422:	0e 94 34 01 	call	0x268	; 0x268 <DIO_WritePort>
+ 2d4:	e1 e0       	ldi	r30, 0x01	; 1
+ 2d6:	f0 e0       	ldi	r31, 0x00	; 0
+ 2d8:	ec 0f       	add	r30, r28
+ 2da:	fd 1f       	adc	r31, r29
+ 2dc:	e6 0f       	add	r30, r22
+ 2de:	f1 1d       	adc	r31, r1
+ 2e0:	60 81       	ld	r22, Z
+ 2e2:	0e 94 34 01 	call	0x268	; 0x268 <DIO_WritePort>
 	
 	#if defined CA
 	unsigned char seven_seg[]={ ~0x3f, ~0x06, ~0x5b, ~0x4f, ~0x66, ~0x6d, ~0x7d, ~0x47, ~0x7f, ~0x6f};
 		DIO_WritePort(port,seven_seg[value]);
 	#endif
 }
- 426:	2a 96       	adiw	r28, 0x0a	; 10
- 428:	0f b6       	in	r0, 0x3f	; 63
- 42a:	f8 94       	cli
- 42c:	de bf       	out	0x3e, r29	; 62
- 42e:	0f be       	out	0x3f, r0	; 63
- 430:	cd bf       	out	0x3d, r28	; 61
- 432:	df 91       	pop	r29
- 434:	cf 91       	pop	r28
- 436:	08 95       	ret
+ 2e6:	2a 96       	adiw	r28, 0x0a	; 10
+ 2e8:	0f b6       	in	r0, 0x3f	; 63
+ 2ea:	f8 94       	cli
+ 2ec:	de bf       	out	0x3e, r29	; 62
+ 2ee:	0f be       	out	0x3f, r0	; 63
+ 2f0:	cd bf       	out	0x3d, r28	; 61
+ 2f2:	df 91       	pop	r29
+ 2f4:	cf 91       	pop	r28
+ 2f6:	08 95       	ret
+
+000002f8 <main>:
+
+
+int main(void)
+{
+	//Tens
+	SEVEN_SEG_Init(portd);
+ 2f8:	84 e4       	ldi	r24, 0x44	; 68
+ 2fa:	0e 94 53 01 	call	0x2a6	; 0x2a6 <SEVEN_SEG_Init>
+	//Units
+	SEVEN_SEG_Init(portc);
+ 2fe:	83 e4       	ldi	r24, 0x43	; 67
+ 300:	0e 94 53 01 	call	0x2a6	; 0x2a6 <SEVEN_SEG_Init>
+	
+	//Red
+	LED_Init(porta,pin0);
+ 304:	60 e0       	ldi	r22, 0x00	; 0
+ 306:	81 e4       	ldi	r24, 0x41	; 65
+ 308:	0e 94 47 01 	call	0x28e	; 0x28e <LED_Init>
+	//Yellow
+	LED_Init(porta,pin1);
+ 30c:	61 e0       	ldi	r22, 0x01	; 1
+ 30e:	81 e4       	ldi	r24, 0x41	; 65
+ 310:	0e 94 47 01 	call	0x28e	; 0x28e <LED_Init>
+	//Green
+	LED_Init(porta,pin2);
+ 314:	62 e0       	ldi	r22, 0x02	; 2
+ 316:	81 e4       	ldi	r24, 0x41	; 65
+ 318:	0e 94 47 01 	call	0x28e	; 0x28e <LED_Init>
+		unsigned char red = 30;
+		unsigned char yellow = 15;
+		unsigned char green = 35;
+		
+		//red
+		for(int i = red; i >= 0; i--)
+ 31c:	ce e1       	ldi	r28, 0x1E	; 30
+ 31e:	d0 e0       	ldi	r29, 0x00	; 0
+ 320:	87 c0       	rjmp	.+270    	; 0x430 <__EEPROM_REGION_LENGTH__+0x30>
+		{	
+			
+			LED_Off(porta,pin2);
+ 322:	62 e0       	ldi	r22, 0x02	; 2
+ 324:	81 e4       	ldi	r24, 0x41	; 65
+ 326:	0e 94 4f 01 	call	0x29e	; 0x29e <LED_Off>
+			LED_On(porta,pin0);
+ 32a:	60 e0       	ldi	r22, 0x00	; 0
+ 32c:	81 e4       	ldi	r24, 0x41	; 65
+ 32e:	0e 94 4b 01 	call	0x296	; 0x296 <LED_On>
+			
+			SEVEN_SEG_Write(portc,i % 10);
+ 332:	ce 01       	movw	r24, r28
+ 334:	6a e0       	ldi	r22, 0x0A	; 10
+ 336:	70 e0       	ldi	r23, 0x00	; 0
+ 338:	0e 94 1c 02 	call	0x438	; 0x438 <__divmodhi4>
+ 33c:	16 2f       	mov	r17, r22
+ 33e:	68 2f       	mov	r22, r24
+ 340:	83 e4       	ldi	r24, 0x43	; 67
+ 342:	0e 94 57 01 	call	0x2ae	; 0x2ae <SEVEN_SEG_Write>
+			SEVEN_SEG_Write(portd,i / 10);
+ 346:	61 2f       	mov	r22, r17
+ 348:	84 e4       	ldi	r24, 0x44	; 68
+ 34a:	0e 94 57 01 	call	0x2ae	; 0x2ae <SEVEN_SEG_Write>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 34e:	2f ef       	ldi	r18, 0xFF	; 255
+ 350:	89 e6       	ldi	r24, 0x69	; 105
+ 352:	98 e1       	ldi	r25, 0x18	; 24
+ 354:	21 50       	subi	r18, 0x01	; 1
+ 356:	80 40       	sbci	r24, 0x00	; 0
+ 358:	90 40       	sbci	r25, 0x00	; 0
+ 35a:	e1 f7       	brne	.-8      	; 0x354 <main+0x5c>
+ 35c:	00 c0       	rjmp	.+0      	; 0x35e <main+0x66>
+ 35e:	00 00       	nop
+			
+			_delay_ms(1000);
+				
+			//yellow
+			if (i == 0)
+ 360:	20 97       	sbiw	r28, 0x00	; 0
+ 362:	09 f0       	breq	.+2      	; 0x366 <main+0x6e>
+ 364:	64 c0       	rjmp	.+200    	; 0x42e <__EEPROM_REGION_LENGTH__+0x2e>
+			{
+				//red at 0
+				SEVEN_SEG_Write(portc,i);
+ 366:	6c 2f       	mov	r22, r28
+ 368:	83 e4       	ldi	r24, 0x43	; 67
+ 36a:	0e 94 57 01 	call	0x2ae	; 0x2ae <SEVEN_SEG_Write>
+				SEVEN_SEG_Write(portd,i);
+ 36e:	6c 2f       	mov	r22, r28
+ 370:	84 e4       	ldi	r24, 0x44	; 68
+ 372:	0e 94 57 01 	call	0x2ae	; 0x2ae <SEVEN_SEG_Write>
+					
+				for (int j = yellow; j>=0; j--)
+ 376:	0f e0       	ldi	r16, 0x0F	; 15
+ 378:	10 e0       	ldi	r17, 0x00	; 0
+ 37a:	56 c0       	rjmp	.+172    	; 0x428 <__EEPROM_REGION_LENGTH__+0x28>
+				{
+
+					LED_Off(porta,pin0);
+ 37c:	60 e0       	ldi	r22, 0x00	; 0
+ 37e:	81 e4       	ldi	r24, 0x41	; 65
+ 380:	0e 94 4f 01 	call	0x29e	; 0x29e <LED_Off>
+					LED_On(porta,pin1);
+ 384:	61 e0       	ldi	r22, 0x01	; 1
+ 386:	81 e4       	ldi	r24, 0x41	; 65
+ 388:	0e 94 4b 01 	call	0x296	; 0x296 <LED_On>
+						
+					SEVEN_SEG_Write(portc,j % 10);
+ 38c:	c8 01       	movw	r24, r16
+ 38e:	6a e0       	ldi	r22, 0x0A	; 10
+ 390:	70 e0       	ldi	r23, 0x00	; 0
+ 392:	0e 94 1c 02 	call	0x438	; 0x438 <__divmodhi4>
+ 396:	f6 2e       	mov	r15, r22
+ 398:	68 2f       	mov	r22, r24
+ 39a:	83 e4       	ldi	r24, 0x43	; 67
+ 39c:	0e 94 57 01 	call	0x2ae	; 0x2ae <SEVEN_SEG_Write>
+					SEVEN_SEG_Write(portd,j / 10);
+ 3a0:	6f 2d       	mov	r22, r15
+ 3a2:	84 e4       	ldi	r24, 0x44	; 68
+ 3a4:	0e 94 57 01 	call	0x2ae	; 0x2ae <SEVEN_SEG_Write>
+ 3a8:	2f ef       	ldi	r18, 0xFF	; 255
+ 3aa:	89 e6       	ldi	r24, 0x69	; 105
+ 3ac:	98 e1       	ldi	r25, 0x18	; 24
+ 3ae:	21 50       	subi	r18, 0x01	; 1
+ 3b0:	80 40       	sbci	r24, 0x00	; 0
+ 3b2:	90 40       	sbci	r25, 0x00	; 0
+ 3b4:	e1 f7       	brne	.-8      	; 0x3ae <main+0xb6>
+ 3b6:	00 c0       	rjmp	.+0      	; 0x3b8 <main+0xc0>
+ 3b8:	00 00       	nop
+					
+					_delay_ms(1000);
+						
+					//green
+					if (j == 0)
+ 3ba:	01 15       	cp	r16, r1
+ 3bc:	11 05       	cpc	r17, r1
+ 3be:	91 f5       	brne	.+100    	; 0x424 <__EEPROM_REGION_LENGTH__+0x24>
+					{
+						//yellow at 0
+						SEVEN_SEG_Write(portc,j);
+ 3c0:	60 2f       	mov	r22, r16
+ 3c2:	83 e4       	ldi	r24, 0x43	; 67
+ 3c4:	0e 94 57 01 	call	0x2ae	; 0x2ae <SEVEN_SEG_Write>
+						SEVEN_SEG_Write(portd,j);
+ 3c8:	60 2f       	mov	r22, r16
+ 3ca:	84 e4       	ldi	r24, 0x44	; 68
+ 3cc:	0e 94 57 01 	call	0x2ae	; 0x2ae <SEVEN_SEG_Write>
+							
+						for (int k = green; k >=0; k--)
+ 3d0:	0f 2e       	mov	r0, r31
+ 3d2:	f3 e2       	ldi	r31, 0x23	; 35
+ 3d4:	ef 2e       	mov	r14, r31
+ 3d6:	f1 2c       	mov	r15, r1
+ 3d8:	f0 2d       	mov	r31, r0
+ 3da:	22 c0       	rjmp	.+68     	; 0x420 <__EEPROM_REGION_LENGTH__+0x20>
+						{
+							
+							LED_Off(porta,pin1);
+ 3dc:	61 e0       	ldi	r22, 0x01	; 1
+ 3de:	81 e4       	ldi	r24, 0x41	; 65
+ 3e0:	0e 94 4f 01 	call	0x29e	; 0x29e <LED_Off>
+							LED_On(porta,pin2);
+ 3e4:	62 e0       	ldi	r22, 0x02	; 2
+ 3e6:	81 e4       	ldi	r24, 0x41	; 65
+ 3e8:	0e 94 4b 01 	call	0x296	; 0x296 <LED_On>
+								
+							SEVEN_SEG_Write(portc,k % 10);	
+ 3ec:	c7 01       	movw	r24, r14
+ 3ee:	6a e0       	ldi	r22, 0x0A	; 10
+ 3f0:	70 e0       	ldi	r23, 0x00	; 0
+ 3f2:	0e 94 1c 02 	call	0x438	; 0x438 <__divmodhi4>
+ 3f6:	d6 2e       	mov	r13, r22
+ 3f8:	68 2f       	mov	r22, r24
+ 3fa:	83 e4       	ldi	r24, 0x43	; 67
+ 3fc:	0e 94 57 01 	call	0x2ae	; 0x2ae <SEVEN_SEG_Write>
+							SEVEN_SEG_Write(portd,k / 10);
+ 400:	6d 2d       	mov	r22, r13
+ 402:	84 e4       	ldi	r24, 0x44	; 68
+ 404:	0e 94 57 01 	call	0x2ae	; 0x2ae <SEVEN_SEG_Write>
+ 408:	2f ef       	ldi	r18, 0xFF	; 255
+ 40a:	89 e6       	ldi	r24, 0x69	; 105
+ 40c:	98 e1       	ldi	r25, 0x18	; 24
+ 40e:	21 50       	subi	r18, 0x01	; 1
+ 410:	80 40       	sbci	r24, 0x00	; 0
+ 412:	90 40       	sbci	r25, 0x00	; 0
+ 414:	e1 f7       	brne	.-8      	; 0x40e <__EEPROM_REGION_LENGTH__+0xe>
+ 416:	00 c0       	rjmp	.+0      	; 0x418 <__EEPROM_REGION_LENGTH__+0x18>
+ 418:	00 00       	nop
+					{
+						//yellow at 0
+						SEVEN_SEG_Write(portc,j);
+						SEVEN_SEG_Write(portd,j);
+							
+						for (int k = green; k >=0; k--)
+ 41a:	21 e0       	ldi	r18, 0x01	; 1
+ 41c:	e2 1a       	sub	r14, r18
+ 41e:	f1 08       	sbc	r15, r1
+ 420:	ff 20       	and	r15, r15
+ 422:	e4 f6       	brge	.-72     	; 0x3dc <main+0xe4>
+			{
+				//red at 0
+				SEVEN_SEG_Write(portc,i);
+				SEVEN_SEG_Write(portd,i);
+					
+				for (int j = yellow; j>=0; j--)
+ 424:	01 50       	subi	r16, 0x01	; 1
+ 426:	11 09       	sbc	r17, r1
+ 428:	11 23       	and	r17, r17
+ 42a:	0c f0       	brlt	.+2      	; 0x42e <__EEPROM_REGION_LENGTH__+0x2e>
+ 42c:	a7 cf       	rjmp	.-178    	; 0x37c <main+0x84>
+		unsigned char red = 30;
+		unsigned char yellow = 15;
+		unsigned char green = 35;
+		
+		//red
+		for(int i = red; i >= 0; i--)
+ 42e:	21 97       	sbiw	r28, 0x01	; 1
+ 430:	dd 23       	and	r29, r29
+ 432:	0c f0       	brlt	.+2      	; 0x436 <__EEPROM_REGION_LENGTH__+0x36>
+ 434:	76 cf       	rjmp	.-276    	; 0x322 <main+0x2a>
+ 436:	72 cf       	rjmp	.-284    	; 0x31c <main+0x24>
 
 00000438 <__divmodhi4>:
  438:	97 fb       	bst	r25, 7

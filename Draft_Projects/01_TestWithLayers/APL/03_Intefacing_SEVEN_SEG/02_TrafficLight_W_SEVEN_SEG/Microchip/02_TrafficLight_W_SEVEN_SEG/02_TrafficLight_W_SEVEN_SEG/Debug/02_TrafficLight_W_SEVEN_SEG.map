@@ -5,7 +5,7 @@ c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/..
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
                               C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o (exit)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
-                              SEVEN_SEG_program.o (__do_copy_data)
+                              02_SEVEN_SEG_program.o (__do_copy_data)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodhi4.o)
                               c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o) (__udivmodhi4)
 
@@ -13,34 +13,34 @@ Discarded input sections
 
  .data          0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
  .bss           0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
- .text          0x00000000        0x0 DIO_program.o
- .data          0x00000000        0x0 DIO_program.o
- .bss           0x00000000        0x0 DIO_program.o
+ .text          0x00000000        0x0 02_DIO_program.o
+ .data          0x00000000        0x0 02_DIO_program.o
+ .bss           0x00000000        0x0 02_DIO_program.o
  .text.DIO_TogglePin
-                0x00000000       0x6e DIO_program.o
+                0x00000000       0x6e 02_DIO_program.o
  .text.DIO_ReadPin
-                0x00000000       0xba DIO_program.o
+                0x00000000       0xba 02_DIO_program.o
  .text.DIO_TogglePort
-                0x00000000       0x36 DIO_program.o
+                0x00000000       0x36 02_DIO_program.o
  .text.DIO_ReadPort
-                0x00000000       0x2a DIO_program.o
+                0x00000000       0x2a 02_DIO_program.o
  .text.DIO_Enable_Internal_PullUp
-                0x00000000       0x6e DIO_program.o
- .text          0x00000000        0x0 LED_program.o
- .data          0x00000000        0x0 LED_program.o
- .bss           0x00000000        0x0 LED_program.o
+                0x00000000       0x6e 02_DIO_program.o
+ .text          0x00000000        0x0 02_LED_program.o
+ .data          0x00000000        0x0 02_LED_program.o
+ .bss           0x00000000        0x0 02_LED_program.o
  .text.LED_Toggle
-                0x00000000        0x6 LED_program.o
+                0x00000000        0x6 02_LED_program.o
  .text.LED_ReadStatus
-                0x00000000        0x6 LED_program.o
+                0x00000000        0x6 02_LED_program.o
+ .text          0x00000000        0x0 02_SEVEN_SEG_program.o
+ .data          0x00000000        0x0 02_SEVEN_SEG_program.o
+ .bss           0x00000000        0x0 02_SEVEN_SEG_program.o
+ .text.SEVEN_SEG_Blink
+                0x00000000        0x8 02_SEVEN_SEG_program.o
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
- .text          0x00000000        0x0 SEVEN_SEG_program.o
- .data          0x00000000        0x0 SEVEN_SEG_program.o
- .bss           0x00000000        0x0 SEVEN_SEG_program.o
- .text.SEVEN_SEG_Blink
-                0x00000000        0x8 SEVEN_SEG_program.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o)
@@ -117,10 +117,10 @@ user_signatures  0x00850000         0x00000400         rw !x
 Linker script and memory map
 
 LOAD C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
-LOAD DIO_program.o
-LOAD LED_program.o
+LOAD 02_DIO_program.o
+LOAD 02_LED_program.o
+LOAD 02_SEVEN_SEG_program.o
 LOAD main.o
-LOAD SEVEN_SEG_program.o
 START GROUP
 LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a
 END GROUP
@@ -311,32 +311,32 @@ END GROUP
                 0x00000082                . = ALIGN (0x2)
  *(.text.*)
  .text.DIO_SetPinDir
-                0x00000082       0xe0 DIO_program.o
+                0x00000082       0xe0 02_DIO_program.o
                 0x00000082                DIO_SetPinDir
  .text.DIO_WritePin
-                0x00000162       0xe0 DIO_program.o
+                0x00000162       0xe0 02_DIO_program.o
                 0x00000162                DIO_WritePin
  .text.DIO_SetPortDir
-                0x00000242       0x26 DIO_program.o
+                0x00000242       0x26 02_DIO_program.o
                 0x00000242                DIO_SetPortDir
  .text.DIO_WritePort
-                0x00000268       0x26 DIO_program.o
+                0x00000268       0x26 02_DIO_program.o
                 0x00000268                DIO_WritePort
  .text.LED_Init
-                0x0000028e        0x8 LED_program.o
+                0x0000028e        0x8 02_LED_program.o
                 0x0000028e                LED_Init
- .text.LED_On   0x00000296        0x8 LED_program.o
+ .text.LED_On   0x00000296        0x8 02_LED_program.o
                 0x00000296                LED_On
- .text.LED_Off  0x0000029e        0x8 LED_program.o
+ .text.LED_Off  0x0000029e        0x8 02_LED_program.o
                 0x0000029e                LED_Off
- .text.main     0x000002a6      0x140 main.o
-                0x000002a6                main
  .text.SEVEN_SEG_Init
-                0x000003e6        0x8 SEVEN_SEG_program.o
-                0x000003e6                SEVEN_SEG_Init
+                0x000002a6        0x8 02_SEVEN_SEG_program.o
+                0x000002a6                SEVEN_SEG_Init
  .text.SEVEN_SEG_Write
-                0x000003ee       0x4a SEVEN_SEG_program.o
-                0x000003ee                SEVEN_SEG_Write
+                0x000002ae       0x4a 02_SEVEN_SEG_program.o
+                0x000002ae                SEVEN_SEG_Write
+ .text.main     0x000002f8      0x140 main.o
+                0x000002f8                main
  .text.libgcc.div
                 0x00000438       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o)
                 0x00000438                _div
@@ -377,7 +377,7 @@ END GROUP
  *(.data*)
  *(.gnu.linkonce.d*)
  *(.rodata)
- .rodata        0x00800060        0xa SEVEN_SEG_program.o
+ .rodata        0x00800060        0xa 02_SEVEN_SEG_program.o
  *(.rodata*)
  *(.gnu.linkonce.r*)
                 0x0080006a                . = ALIGN (0x2)
@@ -439,11 +439,11 @@ END GROUP
 
 .comment        0x00000000       0x30
  *(.comment)
- .comment       0x00000000       0x30 DIO_program.o
+ .comment       0x00000000       0x30 02_DIO_program.o
                                  0x31 (size before relaxing)
- .comment       0x00000030       0x31 LED_program.o
+ .comment       0x00000030       0x31 02_LED_program.o
+ .comment       0x00000030       0x31 02_SEVEN_SEG_program.o
  .comment       0x00000030       0x31 main.o
- .comment       0x00000030       0x31 SEVEN_SEG_program.o
 
 .note.gnu.avr.deviceinfo
                 0x00000000       0x3c
@@ -468,66 +468,66 @@ END GROUP
 .debug_aranges  0x00000000       0xf0
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x60 DIO_program.o
+                0x00000000       0x60 02_DIO_program.o
  .debug_aranges
-                0x00000060       0x40 LED_program.o
+                0x00000060       0x40 02_LED_program.o
  .debug_aranges
-                0x000000a0       0x20 main.o
+                0x000000a0       0x30 02_SEVEN_SEG_program.o
  .debug_aranges
-                0x000000c0       0x30 SEVEN_SEG_program.o
+                0x000000d0       0x20 main.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xede
+.debug_info     0x00000000      0xee1
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x4e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
- .debug_info    0x000004e6      0x26f DIO_program.o
- .debug_info    0x00000755      0x21a LED_program.o
- .debug_info    0x0000096f      0x423 main.o
- .debug_info    0x00000d92      0x14c SEVEN_SEG_program.o
+ .debug_info    0x000004e6      0x272 02_DIO_program.o
+ .debug_info    0x00000758      0x21a 02_LED_program.o
+ .debug_info    0x00000972      0x14c 02_SEVEN_SEG_program.o
+ .debug_info    0x00000abe      0x423 main.o
 
-.debug_abbrev   0x00000000      0x802
+.debug_abbrev   0x00000000      0x82d
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x4a3 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
- .debug_abbrev  0x000004a3       0xd6 DIO_program.o
- .debug_abbrev  0x00000579       0xad LED_program.o
- .debug_abbrev  0x00000626      0x12e main.o
- .debug_abbrev  0x00000754       0xae SEVEN_SEG_program.o
+ .debug_abbrev  0x000004a3      0x101 02_DIO_program.o
+ .debug_abbrev  0x000005a4       0xad 02_LED_program.o
+ .debug_abbrev  0x00000651       0xae 02_SEVEN_SEG_program.o
+ .debug_abbrev  0x000006ff      0x12e main.o
 
-.debug_line     0x00000000      0x788
+.debug_line     0x00000000      0x7a7
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x116 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
- .debug_line    0x00000116      0x2e6 DIO_program.o
- .debug_line    0x000003fc       0xb3 LED_program.o
- .debug_line    0x000004af      0x242 main.o
- .debug_line    0x000006f1       0x97 SEVEN_SEG_program.o
+ .debug_line    0x00000116      0x2ef 02_DIO_program.o
+ .debug_line    0x00000405       0xbd 02_LED_program.o
+ .debug_line    0x000004c2       0x9d 02_SEVEN_SEG_program.o
+ .debug_line    0x0000055f      0x248 main.o
 
 .debug_frame    0x00000000      0x180
  *(.debug_frame)
- .debug_frame   0x00000000       0xa4 DIO_program.o
- .debug_frame   0x000000a4       0x64 LED_program.o
- .debug_frame   0x00000108       0x24 main.o
- .debug_frame   0x0000012c       0x54 SEVEN_SEG_program.o
+ .debug_frame   0x00000000       0xa4 02_DIO_program.o
+ .debug_frame   0x000000a4       0x64 02_LED_program.o
+ .debug_frame   0x00000108       0x54 02_SEVEN_SEG_program.o
+ .debug_frame   0x0000015c       0x24 main.o
 
-.debug_str      0x00000000      0x528
+.debug_str      0x00000000      0x531
  *(.debug_str)
  .debug_str     0x00000000      0x196 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
- .debug_str     0x00000196      0x259 DIO_program.o
-                                0x280 (size before relaxing)
- .debug_str     0x000003ef       0x50 LED_program.o
-                                0x217 (size before relaxing)
- .debug_str     0x0000043f       0xad main.o
+ .debug_str     0x00000196      0x25c 02_DIO_program.o
+                                0x283 (size before relaxing)
+ .debug_str     0x000003f2       0x53 02_LED_program.o
+                                0x21a (size before relaxing)
+ .debug_str     0x00000445       0x5e 02_SEVEN_SEG_program.o
+                                0x213 (size before relaxing)
+ .debug_str     0x000004a3       0x8e main.o
                                 0x286 (size before relaxing)
- .debug_str     0x000004ec       0x3c SEVEN_SEG_program.o
-                                0x210 (size before relaxing)
 
 .debug_loc      0x00000000      0x812
  *(.debug_loc)
- .debug_loc     0x00000000      0x4b8 DIO_program.o
- .debug_loc     0x000004b8      0x14a LED_program.o
- .debug_loc     0x00000602      0x145 main.o
- .debug_loc     0x00000747       0xcb SEVEN_SEG_program.o
+ .debug_loc     0x00000000      0x4b8 02_DIO_program.o
+ .debug_loc     0x000004b8      0x14a 02_LED_program.o
+ .debug_loc     0x00000602       0xcb 02_SEVEN_SEG_program.o
+ .debug_loc     0x000006cd      0x145 main.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -549,10 +549,10 @@ END GROUP
 
 .debug_ranges   0x00000000       0xb0
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x50 DIO_program.o
- .debug_ranges  0x00000050       0x30 LED_program.o
- .debug_ranges  0x00000080       0x10 main.o
- .debug_ranges  0x00000090       0x20 SEVEN_SEG_program.o
+ .debug_ranges  0x00000000       0x50 02_DIO_program.o
+ .debug_ranges  0x00000050       0x30 02_LED_program.o
+ .debug_ranges  0x00000080       0x20 02_SEVEN_SEG_program.o
+ .debug_ranges  0x000000a0       0x10 main.o
 
 .debug_macro
  *(.debug_macro)

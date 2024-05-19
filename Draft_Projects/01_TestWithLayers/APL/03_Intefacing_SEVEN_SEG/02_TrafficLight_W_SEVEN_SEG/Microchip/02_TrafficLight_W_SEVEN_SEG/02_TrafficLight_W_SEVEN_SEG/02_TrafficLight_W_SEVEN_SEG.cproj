@@ -120,34 +120,43 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Definitions.h">
+    <Compile Include="00_Definitions.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="DIO_interface.h">
+    <Compile Include="00_DIO_config.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="DIO_program.c">
+    <Compile Include="00_LED_config.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="DIO_register.h">
+    <Compile Include="00_SEVEN_SEG_config.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="LED_interface.h">
+    <Compile Include="01_DIO_interface.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="LED_program.c">
+    <Compile Include="01_LED_interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="01_SEVEN_SEG_interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="02_DIO_program.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="02_LED_program.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="02_SEVEN_SEG_program.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="03_DIO_register.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="03_LED_private.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="SEVEN_SEG_config.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="SEVEN_SEG_interface.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="SEVEN_SEG_program.c">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

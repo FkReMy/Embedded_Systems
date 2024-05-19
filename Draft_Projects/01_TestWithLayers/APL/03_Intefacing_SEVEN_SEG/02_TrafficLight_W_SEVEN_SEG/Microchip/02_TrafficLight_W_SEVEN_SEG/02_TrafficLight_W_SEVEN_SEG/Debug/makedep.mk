@@ -2,11 +2,11 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-DIO_program.c
+02_DIO_program.c
 
-LED_program.c
+02_LED_program.c
+
+02_SEVEN_SEG_program.c
 
 main.c
-
-SEVEN_SEG_program.c
 

@@ -1,14 +1,19 @@
-/*
- * 02_TrafficLight_W_SEVEN_SEG.c
- *
- * Author : Ahmed Fekry
- */ 
+/*\*******************************************************\*/
+/*\*****           @author  AhmedFekry@VIV           *****\*/
+/*\*****          https://github.com/FkReMy          *****\*/
+/*\*****       Traffic Light W / Seven Segment       *****\*/
+/*\*******************************************************\*/
+
+
 
 #define F_CPU 8000000UL
 #include <util/delay.h>
 
-#include "SEVEN_SEG_interface.h"
-#include "LED_interface.h"
+#include "01_DIO_interface.h"
+#include "01_LED_interface.h"
+#include "01_SEVEN_SEG_interface.h"
+
+
 
 int main(void)
 {
